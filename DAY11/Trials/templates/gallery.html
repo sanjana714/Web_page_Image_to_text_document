@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IMAGE CONFIG</title>
+
+    <link rel="stylesheet" href="static/styles.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js">
+
+        function extractText() {
+
+            let filename = $("#originalImageDisplay").attr("src").split('/').pop();
+
+            $.ajax({
+
+                type: "GET",
+
+                url: `/get_image_info/${filename}`,
+
+                success: function(response) {
+
+                    $("#extractedTextDisplay").val(response.text);
+
+                }
+
+            });
+
+        }
+
+ 
+
+    </script>
+
+    <script>
+
+        function showImage(filename) {
+
+            $.ajax({
+
+                type: "GET",
+
+                url: `/get_image_info/${filename}`,
+
+                success: function(response) {
+
+                    $("#originalImageDisplay").attr("src", `/get_image/${response.original}`);
+
+                    $("#imageDisplay").attr("src", `/get_image/${response.processed}`);
+
+                }
+
+            });
+
+        }
+
+ 
+
+        function handleFolderPick() {
+
+            const files = document.getElementById('folderPicker').files;
+
+            let pngFiles = [];
+
+            let formData = new FormData();
+
+ 
+
+            console.log("Total files in folder:", files.length);  // Debug message
+
+ 
+
+            // Filter out only .png files from the list
+
+            for (let i = 0; i < files.length; i++) {
+
+                if(files[i].name.endsWith('.png')) {
+
+                    pngFiles.push(files[i].webkitRelativePath);
+
+                    formData.append('files', files[i]);
+
+                }
+
+                if(files[i].name.endsWith('.jpg')) {
+
+                    pngFiles.push(files[i].webkitRelativePath);
+
+                    formData.append('files', files[i]);
+
+                }
+
+            }
+
+ 
+
+            console.log("PNG,JPG files found:", pngFiles.length);  // Debug message
+
+ 
+
+            $.ajax({
+
+                type: "POST",
+
+                url: "/upload_files",
+
+                data: formData,
+
+                processData: false,
+
+                contentType: false,
+
+                success: function(response) {
+
+                    if(response.error) {
+
+                        alert(response.error);
+
+                        return;
+
+                    }
+
+                    $("#fileList").empty();
+
+                    pngFiles.forEach(file => {
+
+                        let fileName = file.split('/').pop();
+
+                        $("#fileList").append(`<li onclick="showImage('${fileName}')">${fileName}</li>`);
+
+                    });
+
+                }
+
+            });
+
+        }
+
+   
+
+        function extractText() {
+
+            let filename = $("#originalImageDisplay").attr("src").split('/').pop();
+
+            $.ajax({
+
+                type: "GET",
+
+                url: `/get_image_info/${filename}`,
+
+                success: function(response) {
+
+                    $("#extractedTextDisplay").val(response.text);
+
+                }
+
+            });
+
+        }
+ 
+
+        function downloadFile(filename, content) {
+
+            // It works on all HTML5 Ready browsers as it uses the download attribute of the <a> element:
+
+            const element = document.createElement('a');
+
+ 
+
+            //A blob is a data type that can store binary data
+
+            // "type" is a MIME type
+
+            // It can have a different value, based on a file you want to save
+
+            const blob = new Blob([content], { type: 'plain/text' });
+
+ 
+
+            //createObjectURL() static method creates a DOMString containing a URL representing the object given in the parameter.
+
+            const fileUrl = URL.createObjectURL(blob);
+
+ 
+
+            //setAttribute() Sets the value of an attribute on the specified element.
+
+            element.setAttribute('href', fileUrl); //file location
+
+            element.setAttribute('download', filename); // file name
+
+            element.style.display = 'none';
+
+ 
+
+            //use appendChild() method to move an element from one element to another
+
+            document.body.appendChild(element);
+
+            element.click();
+
+ 
+
+            //The removeChild() method of the Node interface removes a child node from the DOM and returns the removed node
+
+            document.body.removeChild(element);
+
+            };
+
+ 
+
+            window.onload = () => {
+
+            document.getElementById('download').
+
+            addEventListener('click', e => {
+
+ 
+
+                //The value of the file name input box
+
+                const filename = document.getElementById('filename').value;
+
+ 
+
+                //The value of what has been input in the textarea
+
+                const content = document.getElementById('extractedTextDisplay').value;
+
+ 
+
+                // The && (logical AND) operator indicates whether both operands are true. If both operands have nonzero values, the result has the value 1 . Otherwise, the result has the value 0.
+
+ 
+
+                if (filename && content) {
+
+                downloadFile(filename, content);
+
+                }
+
+            });
+
+            };
+
+    </script>
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Image Processing</h1>
+
+    </header>
+
+    <section class="center-section">
+
+        <label for="folderPicker">Browse Folder:</label>
+
+        <input type="file" id="folderPicker" webkitdirectory directory multiple onchange="handleFolderPick()">
+
+    </section>
+
+    <div id="container">
+
+        <div class="column1">
+
+            <ul id="fileList"></ul>
+            <button id="extractButton" onclick="extractText()">Extract Text</button>
+
+        </div>
+
+        <div class="column2">
+
+            <img id="originalImageDisplay" src="" alt="Original Image"><br>
+
+            <img id="imageDisplay" src="" alt="Processed Image">
+
+            <button type="button" onclick="zoomin()"> 
+                Zoom-In
+            </button>
+              
+            <button type="button" onclick="zoomout()"> 
+                Zoom-Out
+            </button>
+            <script type="text/javascript">
+                function zoomin() {
+                    var GFG = document.getElementById("originalImageDisplay");
+                    var GFGI = document.getElementById("imageDisplay");
+                    var currHeight = GFG.clientHeight;
+                    var currHeightI = GFGI.clientHeight;
+                        GFG.style.height = (currHeight + 40) + "px";
+                        GFGI.style.height = (currHeightI + 40) + "px";
+                }
+                function zoomout() {
+                    var GFG = document.getElementById("originalImageDisplay");
+                    var currHeight = GFG.clientHeight;
+                        GFG.style.height = (currHeight - 40) + "px";
+                }
+            </script>
+            <img src="originalImageDisplay">
+            <button onclick="rotateImg()">clock wise</button>
+             <script>
+             function rotateImg(){
+               document.querySelector('img').style.transform="rotate(90deg)"
+             }
+            </script>
+            <button onclick="rotateImg()">clock wise</button>
+             <script>
+             function rotateImg(){
+               document.querySelector('img').style.transform="rotate(-90deg)"
+             }
+            </script>
+        </div>
+
+        <div class="column3">
+
+            <textarea id="extractedTextDisplay" rows="10" cols="30"></textarea>
+
+            <input id="filename" placeholder="Specify a filename..." />
+
+            <button id="download">Download file</button>
+
+ 
+
+            <!--<button type="button" id="bt" class="brk-btn" value="extractedTextDisplay" onclick="saveFile()"> SAVE </button>-->
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

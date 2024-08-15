@@ -1,0 +1,260 @@
+body {
+
+    font-family: Arial, sans-serif;
+
+    background-color: #f4f4f4;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+#div1 {
+    width: 100%;
+    margin: 0 auto;
+    height: 50px;
+    border: 1px solid #000; /* Add a border */
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    font-size: 35px; /* Change font size */
+    font-family: 'Lucida Calligraphy', sans-serif; /* Change font family */
+    background-color: rgb(110, 210, 210);
+    color: #722c2c; /* Change font color to red */
+}
+
+#div2 {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #000; /* Add a border */
+    background-color: rgb(110, 210, 210);
+    display: flex;
+    justify-content: center; /* Center-align horizontally */
+    align-items: center; /* Center-align vertically */
+    text-align: center; /* Center-align text */
+}
+
+#div3 {
+    width: 33.33%;
+    float: right;
+    height: 625px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000; /* Add a border */
+    align-items: center; /* Center horizontally */
+    justify-content: center;
+}
+
+#div4 {
+    width: 33%;
+    float: left;
+    height: 625px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    text-align: center; /* Center text */
+    overflow: auto;
+}
+
+#div5 {
+    width: 33.33%;
+    margin: 0 auto;
+    height: 625px;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    border: 1px solid #000; /* Add a border */
+}
+
+#div6 {
+    margin-top: auto; /* Push the div to the bottom */
+    padding: 20px;
+}
+
+#div7 {
+    margin-top: auto; /* Push the div to the bottom */
+    padding: 20px;
+}
+
+#div10 {
+    margin-top: auto;
+    padding: 20px;
+    border: 1px solid #000;
+    height: 800px;
+}
+ 
+
+section {
+
+    margin: 20px;
+
+} 
+
+label {
+
+    font-weight: bold;
+
+} 
+
+#fileList {
+
+    flex: 1;
+
+    max-width: 200px;
+
+    margin-right: 20px;
+
+    list-style-type: none;
+
+    padding: 0;
+
+}
+
+#fileList li {
+
+    background-color: #ddd;
+
+    padding: 10 px 15px;
+
+    margin-bottom: 10px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    transition: background-color 0.3s ease;
+
+} 
+
+#fileList li:hover {
+
+    background-color: #bcbcbc;
+
+}
+
+#originalImageDisplay {
+
+    max-width: 100%;
+
+    max-height: 250px;
+
+    margin: 5px;
+
+    border: 2px solid #ddd;
+
+    border-radius: 5px;
+
+} 
+
+#imageDisplay {
+    max-width: none; /* Remove the maximum width limit */
+
+    max-height: none; /* Remove the maximum height limit */
+
+    margin: 5px;
+
+    border: 2px solid #ddd;
+
+    border-radius: 5px;
+    
+    overflow: auto; /* Add scroll bars when content overflows */
+}
+
+.center-section {
+
+    text-align: center;
+
+    margin: 0 auto;
+
+    padding: 20px;
+
+} 
+
+* {
+
+    box-sizing: border-box;
+
+  }
+
+#extractButton {
+
+    display: block;
+
+    margin: 10px auto;
+
+    padding: 8px 15px;
+
+    background-color: #50b3a2;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    transition: background-color 0.3s ease;
+
+} 
+
+#extractButton:hover {
+
+    background-color: rgb(168, 103, 179);
+
+}
+ 
+
+#extractedTextDisplay {
+
+    display: block;
+
+    width: 60%;
+
+    height: fit-content;
+
+    margin: 10px auto;
+
+    padding: 10px;
+
+    border: 2px solid #ddd;
+
+    border-radius: 5px;
+
+    font-family: Arial, sans-serif;
+
+    resize: none;
+
+}
+
+#filename {
+    width: 300px; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
+    padding: 5px; /* Adjust the padding as needed */
+    font-size: 16px; /* Adjust the font size as needed */
+}
+
+#download {
+    width: 150px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+    padding: 10px; /* Adjust the padding as needed */
+    font-size: 18px; /* Adjust the font size as needed */
+}
+
+.image-container {
+    max-width: 100%;
+    max-height: 100%; /* Allow images to expand to their natural size */
+    margin: 5px;
+    border-radius: 5px;
+    overflow: hidden; /* Hide overflowing content */
+}
+
+.grayscaleimage-container{
+    max-width: 100%;
+    max-height: 100%; /* Allow images to expand to their natural size */
+    margin: 5px;
+    border-radius: 5px;
+    overflow: auto; /* Scroll bar */
+}

@@ -1,0 +1,77 @@
+<html>
+<head>
+    <title>Uploading a dynamic image</title>
+    <meta charset="UTF-8">
+    <style>
+        .container1 {
+  width: 100%;
+  height: 20vh;
+}
+.toppane {
+  width: 100%;
+  height: 80px;
+  border: 1px solid black;
+}
+
+.leftpane {
+  width: 33.3%;
+  height: 70vh;
+  border: 1px solid black;
+}
+
+.middlepane {
+  width: 33.3%;
+  height: 70vh;
+  border: 1px solid black;
+}
+
+.rightpane {
+  width: 33.3%;
+  height: 70vh;
+  border: 1px solid black;
+}
+
+.bottompane {
+  width: 100%;
+  height: 90px;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 40px;
+  font-family: ui-serif; 
+}
+
+body {
+  margin: 0!important;
+}
+
+.d-flex {
+  display: flex;
+}
+    </style>
+</head>
+
+<body>
+    <div class="container1">
+            <div class="bottompane">IMAGE PROCESSOR</div>
+        <div class="toppane">
+            <form action="{{ url_for('upload_file') }}" enctype="multipart/form-data" method="POST">
+                <input name="img" type="file" multiple/>
+                <input type="submit"/>
+            </form>
+        </div>
+        <div class="d-flex">
+          <div class="leftpane">
+            {% if img %}
+            <img src="{{img}}">
+            {% else %}
+            <h1>Image will be render here...</h1>
+            {% endif %}
+          </div>
+          <div class="middlepane">
+          </div>
+          <div class="rightpane">
+          </div>
+        </div>
+      </div>
+</body>
+</html>

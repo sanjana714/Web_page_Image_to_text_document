@@ -1,0 +1,251 @@
+body {
+
+    font-family: Arial, sans-serif;
+
+    background-color: #f4f4f4;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+ 
+
+header {
+
+    background-color: #50b3a2;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 1em 0;
+
+}
+
+ 
+
+section {
+
+    margin: 20px;
+
+}
+
+ 
+
+label {
+
+    font-weight: bold;
+
+}
+
+ 
+
+#container {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    flex-wrap: wrap;
+
+    margin-top: 20px;
+
+}
+
+ 
+
+#fileList {
+
+    flex: 1;
+
+    max-width: 200px;
+
+    margin-right: 20px;
+
+    list-style-type: none;
+
+    padding: 0;
+
+}
+
+ 
+
+#fileList li {
+
+    background-color: #ddd;
+
+    padding: 5px;
+
+    margin-bottom: 10px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    transition: background-color 0.3s ease;
+
+}
+
+ 
+
+#fileList li:hover {
+
+    background-color: #bcbcbc;
+
+}
+
+ 
+
+#originalImageDisplay, #imageDisplay {
+
+    max-width: 100%;
+
+    max-height: 500px;
+
+    margin: 10px;
+
+    border: 2px solid #ddd;
+
+    border-radius: 5px;
+
+}
+
+ 
+
+.center-section {
+
+    text-align: center;
+
+    margin: 0 auto;
+
+    padding: 20px;
+
+}
+
+ 
+
+* {
+
+    box-sizing: border-box;
+
+  }
+
+ 
+
+  /* Create three equal columns that floats next to each other */
+
+.column1 {
+
+    float: left;
+
+    width:15%;
+
+    padding: 10px;
+
+    height: 300px; /* Should be removed. Only for demonstration */
+
+  }
+
+ 
+
+  .column2 {
+
+    float:center;
+
+    width: 35%;
+
+    padding: 10px;
+
+    height: 300px; /* Should be removed. Only for demonstration */
+
+  }
+
+ 
+
+  .column3 {
+
+    float:right;
+
+    width: 35%;
+
+    padding: 10px;
+
+    height: 300px; /* Should be removed. Only for demonstration */
+
+  }
+
+ 
+
+  /* Clear floats after the columns */
+
+.container:after {
+
+    content: "";
+
+    display: table;
+
+    /*clear: both;*/
+
+  }
+
+ 
+
+ 
+
+#extractButton {
+
+    display: block;
+
+    margin: 10px auto;
+
+    padding: 8px 15px;
+
+    background-color: #50b3a2;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    transition: background-color 0.3s ease;
+
+}
+
+ 
+
+#extractButton:hover {
+
+    background-color: #3a8d7a;
+
+}
+
+ 
+
+#extractedTextDisplay {
+
+    display: block;
+
+    width: 60%;
+
+    height: fit-content;
+
+    margin: 10px auto;
+
+    padding: 10px;
+
+    border: 2px solid #ddd;
+
+    border-radius: 5px;
+
+    font-family: Arial, sans-serif;
+
+    resize: none;
+
+}
